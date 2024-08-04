@@ -10,15 +10,12 @@ export const getContactsController = async (req, res) => {
   });
 };
 
-export const getContactsByIdController = async (req, res) => {
+export const getContactsByIdController = async (req, res, next) => {
   const { contactId } = req.params;
   const contact = await getContactsById(contactId);
 
   if (!contact) {
-    res.status(404).json({
-      status: 404,
-      message: 'Contact not found',
-    });
+    next(new Error('Contact not found'));
     return;
   }
 
