@@ -4,6 +4,7 @@ import cors from 'cors';
 import router from './routers/contacts.js';
 import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
 const PORT = Number(env('PORT', '3000'));
 
@@ -23,11 +24,7 @@ export const setupServer = () => {
 
   app.use(router);
 
-  app.use('*', (req, res, next) => {
-    res.status(404).json({
-      message: 'Not found',
-    });
-  });
+  app.use('*', notFoundHandler);
 
   app.use(errorHandler);
 
