@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
-import { getAllContacts, getContactsById } from './services/contacts.js';
 import {
+  getAllContacts,
+  getContactsById,
   createContact,
   deleteContact,
   updateContact,
