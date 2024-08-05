@@ -25,7 +25,6 @@ export const setupServer = () => {
   app.use(router);
 
   app.use('*', notFoundHandler);
-
   app.use(errorHandler);
 
   app.listen(PORT, () => {
