@@ -7,18 +7,45 @@ export const createContactSchema = Joi.object({
     'string.max': 'Username should have at most {#limit} characters',
     'any.required': 'Username is required',
   }),
-  email: Joi.string().min(3).max(20).email().required(),
-  age: Joi.number().integer().min(6).max(16).required(),
-  gender: Joi.string().valid('male', 'female', 'other').required(),
-  avgMark: Joi.number().min(2).max(12).required(),
-  onDuty: Joi.boolean(),
+  phoneNumber: Joi.string().min(3).max(20).required().messages({
+    'string.base': 'User phone should be a string',
+    'string.min': 'User phone should have at least {#limit} characters',
+    'string.max': 'User phone should have at most {#limit} characters',
+    'any.required': 'User phone is required',
+  }),
+  email: Joi.string().min(3).max(20).email().messages({
+    'string.base': 'User email should be a string',
+    'string.min': 'User email should have at least {#limit} characters',
+    'string.max': 'User email should have at most {#limit} characters',
+  }),
+  isFavourite: Joi.boolean(),
+  contactType: Joi.string()
+    .valid('work', 'home', 'personal')
+    .required()
+    .messages({
+      'string.base': 'User type should be a string',
+      'any.required': 'User type is required',
+    }),
 });
 
 export const updateContactSchema = Joi.object({
-  name: Joi.string().min(3).max(20),
-  email: Joi.string().email(),
-  age: Joi.number().integer().min(6).max(16),
-  gender: Joi.string().valid('male', 'female', 'other'),
-  avgMark: Joi.number().min(2).max(12),
-  onDuty: Joi.boolean(),
+  name: Joi.string().min(3).max(20).messages({
+    'string.base': 'Username should be a string',
+    'string.min': 'Username should have at least {#limit} characters',
+    'string.max': 'Username should have at most {#limit} characters',
+  }),
+  phoneNumber: Joi.string().min(3).max(20).messages({
+    'string.base': 'User phone should be a string',
+    'string.min': 'User phone should have at least {#limit} characters',
+    'string.max': 'User phone should have at most {#limit} characters',
+  }),
+  email: Joi.string().min(3).max(20).email().messages({
+    'string.base': 'User email should be a string',
+    'string.min': 'User email should have at least {#limit} characters',
+    'string.max': 'User email should have at most {#limit} characters',
+  }),
+  isFavourite: Joi.boolean(),
+  contactType: Joi.string().valid('work', 'home', 'personal').messages({
+    'string.base': 'User type should be a string',
+  }),
 });
