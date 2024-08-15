@@ -8,7 +8,7 @@ export const parseFilterParams = (query) => {
   }
 
   if (typeof isFavourite !== 'undefined') {
-    filter.isFavourite = isFavourite === 'true'; // Convert to boolean
+    filter.isFavourite = isFavourite === 'true';
   }
 
   return filter;
