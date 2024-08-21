@@ -1,4 +1,5 @@
 import express from 'express';
+import { authenticate } from '../middlewares/authenticate.js';
 
 import {
   createContactController,
@@ -18,6 +19,8 @@ import { isValidId } from '../middlewares/isValidId.js';
 
 const router = express.Router();
 const jsonParser = express.json();
+
+router.use(authenticate);
 
 router.get('/', ctrlWrapper(getContactsController));
 
