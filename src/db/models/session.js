@@ -29,4 +29,4 @@ const sessionSchema = new Schema(
   },
 );
 
-export const Session = model('contacts', sessionSchema);
+export const Session = model('sessions', sessionSchema);
