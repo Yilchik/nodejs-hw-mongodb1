@@ -1,8 +1,10 @@
-import { registerUser } from '../services/auth.js';
-import { loginUser } from '../services/auth.js';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  refreshUsersSession,
+} from '../services/auth.js';
 import { DAYS } from '../constants/index.js';
-import { logoutUser } from '../services/auth.js';
-import { refreshUsersSession } from '../services/auth.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
@@ -26,7 +28,7 @@ export const loginUserController = async (req, res) => {
     expires: new Date(Date.now() + DAYS),
   });
 
-  res.json({
+  res.send({
     status: 200,
     message: 'Successfully logged in an user!',
     data: {
@@ -65,7 +67,7 @@ export const refreshUserSessionController = async (req, res) => {
 
   setupSession(res, session);
 
-  res.json({
+  res.send({
     status: 200,
     message: 'Successfully refreshed a session!',
     data: {
