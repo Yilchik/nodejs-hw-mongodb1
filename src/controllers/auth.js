@@ -4,6 +4,7 @@ import {
   logoutUser,
   refreshUsersSession,
 } from '../services/auth.js';
+
 import { DAYS } from '../constants/index.js';
 
 export const registerUserController = async (req, res) => {
@@ -38,31 +39,34 @@ export const loginUserController = async (req, res) => {
 };
 
 export const logoutUserController = async (req, res) => {
-  if (req.cookies.sessionId) {
-    await logoutUser(req.cookies.sessionId);
+  const { sessionId } = req.cookies;
+
+  if (typeof sessionId === 'string') {
+    await logoutUser(sessionId);
   }
 
-  res.clearCookie('sessionId');
   res.clearCookie('refreshToken');
+  res.clearCookie('sessionId');
 
-  res.status(204).send();
+  res.status(204).end();
 };
 
 const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
-    expires: new Date(Date.now() + DAYS),
+    expires: session.refreshTokenValidUntil,
   });
   res.cookie('sessionId', session._id, {
     httpOnly: true,
-    expires: new Date(Date.now() + DAYS),
+    expires: session.refreshTokenValidUntil,
   });
 };
 
 export const refreshUserSessionController = async (req, res) => {
+  const { sessionId, refreshToken } = req.cookies;
   const session = await refreshUsersSession({
-    sessionId: req.cookies.sessionId,
-    refreshToken: req.cookies.refreshToken,
+    sessionId,
+    refreshToken,
   });
 
   setupSession(res, session);

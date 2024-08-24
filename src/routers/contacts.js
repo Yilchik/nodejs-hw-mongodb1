@@ -20,8 +20,6 @@ import { isValidId } from '../middlewares/isValidId.js';
 const router = express.Router();
 const jsonParser = express.json();
 
-router.use(authenticate);
-
 router.get('/', ctrlWrapper(getContactsController));
 
 router.get('/:contactId', isValidId, ctrlWrapper(getContactsByIdController));

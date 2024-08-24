@@ -23,6 +23,7 @@ router.post(
 
 router.post(
   '/login',
+  jsonParser,
   validateBody(loginUserSchema),
   ctrlWrapper(loginUserController),
 );

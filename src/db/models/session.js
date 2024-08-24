@@ -3,12 +3,12 @@ import { model, Schema } from 'mongoose';
 const sessionSchema = new Schema(
   {
     userId: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     },
     accessToken: {
       type: String,
-      required: false,
+      required: true,
     },
     refreshToken: {
       type: String,

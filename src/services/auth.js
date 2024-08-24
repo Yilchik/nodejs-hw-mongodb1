@@ -1,15 +1,16 @@
-import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 
-import { User } from '../db/models/user.js';
+import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 
-import { FIFTEEN_MINUTES, DAYS } from '../constants/index.js';
+import { User } from '../db/models/user.js';
 import { Session } from '../db/models/session.js';
+
+import { FIFTEEN_MINUTES, DAYS } from '../constants/index.js';
 
 export const registerUser = async (payload) => {
   const user = await User.findOne({ email: payload.email });
-  if (user) throw createHttpError(409, 'Email in use');
+  if (user !== null) throw createHttpError(409, 'Email already in use');
 
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
