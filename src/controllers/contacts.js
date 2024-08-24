@@ -53,8 +53,6 @@ export async function getContactsByIdController(req, res, next) {
 }
 
 export async function createContactController(req, res) {
-  const { _id: userId } = req.user;
-
   const contact = {
     name: req.body.name,
     phoneNumber: req.body.phoneNumber,
