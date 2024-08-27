@@ -48,5 +48,5 @@ export const updateContactSchema = Joi.object({
   contactType: Joi.string().valid('work', 'home', 'personal').messages({
     'string.base': 'User type should be a string',
   }),
-  userId: Joi.string().required(),
+  userId: Joi.string(),
 });
