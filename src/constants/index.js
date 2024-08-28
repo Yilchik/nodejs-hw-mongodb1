@@ -1,5 +1,9 @@
 import path from 'node:path';
 
+export const ENV_VARS = {
+  PORT: 'PORT',
+};
+
 export const SORT_ORDER = {
   ASC: 'asc',
   DESC: 'desc',
@@ -8,7 +12,7 @@ export const FIFTEEN_MINUTES = 15 * 60 * 1000;
 export const DAYS = 30 * 24 * 60 * 60 * 1000;
 
 export const SMTP = {
-  SERVER: 'SMTP_SERVER',
+  HOST: 'SMTP_HOST',
   PORT: 'SMTP_PORT',
   USER: 'SMTP_USER',
   PASSWORD: 'SMTP_PASSWORD',
