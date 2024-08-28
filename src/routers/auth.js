@@ -44,4 +44,11 @@ router.post(
   ctrlWrapper(requestResetEmailController),
 );
 
+router.post(
+  '/reset-pwd',
+  jsonParser,
+  validateBody(resetPasswordSchema),
+  ctrlWrapper(resetPasswordController),
+);
+
 export default router;
