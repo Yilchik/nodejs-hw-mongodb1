@@ -127,7 +127,7 @@ export const requestResetToken = async (email) => {
 
   try {
     await sendMail({
-      from: env(SMTP.SMTP_FROM),
+      from: env(SMTP.FROM_EMAIL),
       to: email,
       subject: 'Reset your password',
       html,

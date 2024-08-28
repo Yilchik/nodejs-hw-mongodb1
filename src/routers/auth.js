@@ -2,12 +2,14 @@ import express from 'express';
 
 import { Router } from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+
 import {
   registerUserSchema,
   loginUserSchema,
   requestResetEmailSchema,
   resetPasswordSchema,
 } from '../validation/auth.js';
+
 import {
   registerUserController,
   loginUserController,
@@ -16,6 +18,7 @@ import {
   requestResetEmailController,
   resetPasswordController,
 } from '../controllers/auth.js';
+
 import { validateBody } from '../middlewares/validateBody.js';
 
 const router = Router();
