@@ -7,7 +7,12 @@ import createHttpError from 'http-errors';
 import { User } from '../db/models/user.js';
 import { Session } from '../db/models/session.js';
 
-import { FIFTEEN_MINUTES, DAYS, SMTP } from '../constants/index.js';
+import {
+  FIFTEEN_MINUTES,
+  DAYS,
+  SMTP,
+  TEMPLATES_DIR,
+} from '../constants/index.js';
 
 import { env } from '../utils/env.js';
 import { sendMail } from '../utils/sendMail.js';
