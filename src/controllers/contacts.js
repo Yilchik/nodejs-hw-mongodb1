@@ -11,6 +11,9 @@ import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
 
+import { saveFileToCloudinary } from '../utils/saveFileToCloudinary.js';
+import { env } from '../utils/env.js';
+
 export async function getContactsController(req, res) {
   const { page, perPage } = parsePaginationParams(req.query);
   const { sortBy, sortOrder } = parseSortParams(req.query);
@@ -53,6 +56,18 @@ export async function getContactsByIdController(req, res, next) {
 }
 
 export async function createContactController(req, res) {
+  const photo = req.file;
+
+  let photoUrl;
+
+  if (photo) {
+    if (env(CLOUDINARY.ENABLE_CLOUDINARY) === 'true') {
+      photoUrl = await saveFileToCloudinary(photo);
+    } else {
+      photoUrl = await saveFileToUploadDir(photo);
+    }
+  }
+
   const contact = {
     name: req.body.name,
     phoneNumber: req.body.phoneNumber,
