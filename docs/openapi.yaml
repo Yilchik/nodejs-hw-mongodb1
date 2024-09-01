@@ -12,12 +12,12 @@ tags:
   - name: Auth
     description: Auth operations.
 servers:
-  - url: http://localhost:3000
-  - url: #посилання на задеплоєний сайт
+  - url: http://127.0.0.1:3000
+  # - url: #посилання на задеплоєний сайт - render
 paths:
   /contacts/{contactId}:
     get:
-      $ref: ../swagger/paths/contacts/{contactId}/get.yaml
+      $ref: ../docs/swagger/paths/contacts/{contactId}/get.yaml
 components:
   securitySchemes:
     bearerAuth:
