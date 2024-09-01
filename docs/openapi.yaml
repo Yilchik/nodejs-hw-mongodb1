@@ -16,6 +16,8 @@ servers:
   # - url: #посилання на задеплоєний сайт - render
 paths:
   /contacts:
+    get:
+      $ref: ../docs/swagger/paths/contacts/get.yaml
     post:
       $ref: ../docs/swagger/paths/contacts/post.yaml
   /contacts/{contactId}:
