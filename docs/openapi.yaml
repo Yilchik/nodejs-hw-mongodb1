@@ -15,6 +15,9 @@ servers:
   - url: http://127.0.0.1:3000
   # - url: #посилання на задеплоєний сайт - render
 paths:
+  /contacts:
+    post:
+      $ref: ../docs/swagger/paths/contacts/post.yaml
   /contacts/{contactId}:
     get:
       $ref: ../docs/swagger/paths/contacts/{contactId}/get.yaml
